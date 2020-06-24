@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Weather Dashboard</title>
+  </head>
+  <body>
+    <header>Weather Dashboard</header>
+    <div class="row container-fluid">
+      <div class="col-md-4">
+        <div id="citySearch">Search for City:</div>
+        <input type="text" />
+        <button>Search</button>
+      </div>
+      <div class="col-md-8">
+        <div class="currentDayForcast"></div>
+        <div class="fiveDayForcast"></div>
+        <div class="row">
+          <div class="col-md-2 dayOne"></div>
+          <div class="col-md-2 col-half-offset dayTwo"></div>
+          <div class="col-md-2 col-half-offset dayThree"></div>
+          <div class="col-md-2 col-half-offset dayFour"></div>
+          <div class="col-md-2 col-half-offset datFive"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
