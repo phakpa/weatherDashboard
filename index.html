@@ -16,25 +16,29 @@
   <body>
     <header>Weather Dashboard</header>
     <div class="row container-fluid">
-      <div class="col-md-4">
-        <div id="citySearch">Search for City:</div>
-        <input type="text" />
-        <button>Search</button>
-      </div>
-      <div class="col-md-8">
-        <div class="currentDayForcast"></div>
-        <div class="fiveDayForcast"></div>
+      <form class="col-md-3 container">
+        <div id="citySearch"><h2>Search for a City:</h2></div>
+        <input id="cityInput" type="text" />
+        <button id="searchBtn">Search</button>
+        <div id="cityList">
+          <button class="cityName" city-name="Raleigh">Raleigh</button>
+        </div>
+      </form>
+      <div class="col-md-9 container">
+        <div id="currentDayForcast"></div>
+        <div id="fiveDayForcast"></div>
         <div class="row">
-          <div class="col-md-2 dayOne"></div>
-          <div class="col-md-2 col-half-offset dayTwo"></div>
-          <div class="col-md-2 col-half-offset dayThree"></div>
-          <div class="col-md-2 col-half-offset dayFour"></div>
-          <div class="col-md-2 col-half-offset datFive"></div>
+          <div class="col-md-2 fiveDay" id="dayOne"></div>
+          <div class="col-md-2 col-half-offset fiveDay" id="dayTwo"></div>
+          <div class="col-md-2 col-half-offset fiveDay" id="dayThree"></div>
+          <div class="col-md-2 col-half-offset fiveDay" id="dayFour"></div>
+          <div class="col-md-2 col-half-offset fiveDay" id="dayFive"></div>
         </div>
       </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

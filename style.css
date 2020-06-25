@@ -9,10 +9,41 @@ header {
   font-size: 40px;
 }
 
+.container {
+  padding: 10px;
+}
+
 #citySearch {
   font-size: 25px;
 }
 
 .col-half-offset {
   margin-left: 4.166666667%;
+}
+
+.currentDayForcastStyle {
+  border-style: solid;
+}
+
+.currentWeatherStyle {
+  padding: 15px;
+}
+.currentHeaderWeatherStyle {
+  font-weight: bolder;
+  font-size: x-large;
+  padding: 15px;
+}
+
+.fiveDay {
+  background-color: skyblue;
+  color: white;
+}
+
+.currentIndexStyle {
+  padding: 15px;
+  background-color: red;
+}
+
+a {
+  display: block;
 }
