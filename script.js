@@ -1,4 +1,6 @@
 let dayCounter = 1;
+
+lastestCitySearch();
 //dashBoardRender Function
 function dashBoardRender() {
   let cityName = $("#cityInput").val();
@@ -232,7 +234,22 @@ $("#searchBtn").on("click", function (event) {
   event.preventDefault();
   dashBoardRender();
   ajaxNameCall();
+  localStorage.setItem("last search", JSON.stringify($("#cityInput").val()));
 });
+
+function lastestCitySearch() {
+  let storedSearch = JSON.parse(localStorage.getItem("last search"));
+  if (storedSearch !== null) {
+    $("#cityInput").val(storedSearch);
+    let cityName = storedSearch;
+    let newDiv = $("<div>");
+    newDiv.html(cityName);
+    newDiv.addClass("cityName");
+    newDiv.attr("city-name", cityName);
+    $("#cityList").append(newDiv);
+    dashBoardRender();
+  }
+}
 
 function ajaxNameCall() {
   let cityName = $("#cityInput").val();
@@ -253,6 +270,10 @@ function ajaxNameCall() {
     $("#cityList").append(newDiv);
     $(".cityName").on("click", function () {
       $("#cityInput").val($(this).attr("city-name"));
+      localStorage.setItem(
+        "last search",
+        JSON.stringify($(this).attr("city-name"))
+      );
       dashBoardRender();
     });
   });

@@ -16,6 +16,7 @@ header {
 .cityName {
   font-size: 25px;
   border-style: solid;
+  border-color: lightgrey;
 }
 
 #citySearch {
