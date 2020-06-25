@@ -13,6 +13,11 @@ header {
   padding: 10px;
 }
 
+.cityName {
+  font-size: 25px;
+  border-style: solid;
+}
+
 #citySearch {
   font-size: 25px;
 }
@@ -23,6 +28,7 @@ header {
 
 .currentDayForcastStyle {
   border-style: solid;
+  border-color: grey;
 }
 
 .currentWeatherStyle {
@@ -41,6 +47,21 @@ header {
 
 .currentIndexStyle {
   padding: 15px;
+}
+
+span {
+  color: white;
+}
+
+.greenBackground {
+  background-color: green;
+}
+
+.orangeBackground {
+  background-color: orange;
+}
+
+.redBackground {
   background-color: red;
 }
 

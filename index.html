@@ -16,16 +16,19 @@
   <body>
     <header>Weather Dashboard</header>
     <div class="row container-fluid">
-      <form class="col-md-3 container">
-        <div id="citySearch"><h2>Search for a City:</h2></div>
-        <input id="cityInput" type="text" />
-        <button id="searchBtn">Search</button>
-        <div id="cityList">
-          <button class="cityName" city-name="Raleigh">Raleigh</button>
-        </div>
-      </form>
+      <div class="col-md-3 container">
+        <form>
+          <div id="citySearch"><h2>Search for a City:</h2></div>
+          <input id="cityInput" type="text" />
+          <button id="searchBtn">Search</button>
+        </form>
+        <div id="cityList"></div>
+      </div>
       <div class="col-md-9 container">
-        <div id="currentDayForcast"></div>
+        <div id="currentDay">
+          <div id="currentDayForcast"></div>
+          <div id="currentIndex"></div>
+        </div>
         <div id="fiveDayForcast"></div>
         <div class="row">
           <div class="col-md-2 fiveDay" id="dayOne"></div>

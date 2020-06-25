@@ -2,7 +2,6 @@ let dayCounter = 1;
 //dashBoardRender Function
 function dashBoardRender() {
   let cityName = $("#cityInput").val();
-
   let queryURL =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
@@ -11,23 +10,16 @@ function dashBoardRender() {
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     cityName +
     "&appid=9099e8618e1dcdaab8e7f96651d3bbc5";
-
   //temp, humdity, windspeed web api call
   $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    searchHistory();
-    function searchHistory() {
-      let cityName = response.name;
-      let newDiv = $("<button>");
-      newDiv.html(cityName);
-      newDiv.addClass("cityName");
-      newDiv.attr("city-name", cityName);
-      $("#cityList").append(newDiv);
-    }
+    //clear current day
+    $("#currentDay").removeClass("currentDayForcastStyle");
+    $("#currentDayForcast").empty();
     //current day
-    $("#currentDayForcast").addClass("currentDayForcastStyle");
+    $("#currentDay").addClass("currentDayForcastStyle");
     let newDiv = $("<div>");
     newDiv.html(
       response.name +
@@ -73,13 +65,24 @@ function dashBoardRender() {
       url: uvIndexURL,
       method: "GET",
     }).then(function (response) {
+      //clear index div
+      $("#currentIndex").empty();
       let newDiv = $("<div>");
-      newDiv.html("UV Index: " + response.current.uvi);
+      newDiv.html("UV Index: " + "<span>" + response.current.uvi + "</span");
       newDiv.addClass("currentIndexStyle");
-      $("#currentDayForcast").append(newDiv);
+      $("#currentIndex").append(newDiv);
+      let indexValue = response.current.uvi;
+      if (indexValue < 3) {
+        $("span").addClass("greenBackground");
+      } else if (indexValue < 7) {
+        $("span").addClass("orangeBackground");
+      } else {
+        $("span").addClass("redBackground");
+      }
     });
 
     //5 day forcast ajax call
+    $("#fiveDayForcast").empty();
     let fiveDayDiv = $("<div>");
     fiveDayDiv.html("<h2>5-Day Forcast: </h2>");
     $("#fiveDayForcast").append(fiveDayDiv);
@@ -87,7 +90,12 @@ function dashBoardRender() {
       url: fiveDayURL,
       method: "GET",
     }).then(function (response) {
-      console.log(response.list);
+      //clear 5 day
+      $("#dayOne").empty();
+      $("#dayTwo").empty();
+      $("#dayThree").empty();
+      $("#dayFour").empty();
+      $("#dayFive").empty();
       for (i = 1; i < response.list.length; i = i + 8) {
         if (i === 1) {
           dayCounter = 1;
@@ -110,13 +118,11 @@ function dashBoardRender() {
           );
           let newDiv3 = $("<div>");
           newDiv3.html("Humidity: " + response.list[i].main.humidity + "&#37;");
-
           $("#dayOne").append(newDiv);
           $("#dayOne").append(newDiv1);
           $("#dayOne").append(newDiv2);
           $("#dayOne").append(newDiv3);
         }
-
         if (dayCounter === 2) {
           let newDiv = $("<div>");
           newDiv.html(moment().add(dayCounter, "days").format("l"));
@@ -135,7 +141,6 @@ function dashBoardRender() {
           );
           let newDiv3 = $("<div>");
           newDiv3.html("Humidity: " + response.list[i].main.humidity + "&#37;");
-
           $("#dayTwo").append(newDiv);
           $("#dayTwo").append(newDiv1);
           $("#dayTwo").append(newDiv2);
@@ -159,7 +164,6 @@ function dashBoardRender() {
           );
           let newDiv3 = $("<div>");
           newDiv3.html("Humidity: " + response.list[i].main.humidity + "&#37;");
-
           $("#dayThree").append(newDiv);
           $("#dayThree").append(newDiv1);
           $("#dayThree").append(newDiv2);
@@ -183,7 +187,6 @@ function dashBoardRender() {
           );
           let newDiv3 = $("<div>");
           newDiv3.html("Humidity: " + response.list[i].main.humidity + "&#37;");
-
           $("#dayFour").append(newDiv);
           $("#dayFour").append(newDiv1);
           $("#dayFour").append(newDiv2);
@@ -207,7 +210,6 @@ function dashBoardRender() {
           );
           let newDiv3 = $("<div>");
           newDiv3.html("Humidity: " + response.list[i].main.humidity + "&#37;");
-
           $("#dayFive").append(newDiv);
           $("#dayFive").append(newDiv1);
           $("#dayFive").append(newDiv2);
@@ -220,32 +222,38 @@ function dashBoardRender() {
   });
 }
 
-$(".cityName").on("click", function (event) {
-  event.preventDefault();
-
-  console.log("hello");
-  console.log($(this).attr("city-name"));
-
-  // $("#currentDayForcast").removeClass("currentDayForcastStyle");
-  // $("#currentDayForcast").empty();
-  // $("#fiveDayForcast").empty();
-  // $("#dayOne").empty();
-  // $("#dayTwo").empty();
-  // $("#dayThree").empty();
-  // $("#dayFour").empty();
-  // $("#dayFive").empty();
+$(".cityName").on("click", function () {
+  $("#cityInput").val($(this).attr("city-name"));
+  dashBoardRender();
 });
 
 //onclick for search button
 $("#searchBtn").on("click", function (event) {
   event.preventDefault();
-  $("#currentDayForcast").removeClass("currentDayForcastStyle");
-  $("#currentDayForcast").empty();
-  $("#fiveDayForcast").empty();
-  $("#dayOne").empty();
-  $("#dayTwo").empty();
-  $("#dayThree").empty();
-  $("#dayFour").empty();
-  $("#dayFive").empty();
   dashBoardRender();
+  ajaxNameCall();
 });
+
+function ajaxNameCall() {
+  let cityName = $("#cityInput").val();
+  let queryURL =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    cityName +
+    "&appid=9099e8618e1dcdaab8e7f96651d3bbc5";
+
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    let cityName = response.name;
+    let newDiv = $("<div>");
+    newDiv.html(cityName);
+    newDiv.addClass("cityName");
+    newDiv.attr("city-name", cityName);
+    $("#cityList").append(newDiv);
+    $(".cityName").on("click", function () {
+      $("#cityInput").val($(this).attr("city-name"));
+      dashBoardRender();
+    });
+  });
+}
