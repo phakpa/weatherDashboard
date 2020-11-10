@@ -1,4 +1,4 @@
-# 06 Server-Side APIs: Weather Dashboard
+# Weather Dashboard
 
 A weather application is developed to retreive weather data for cities for the current day and a 5 day forcast.
 
