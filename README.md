@@ -2,11 +2,13 @@
 
 A weather application is developed to retreive weather data for cities for the current day and a 5 day forcast.
 
-Here is the link to the URL of the application. https://phakpa.github.io/weatherDashboard/
+# Links
 
-Here is the link to the Github repository. https://github.com/phakpa/weatherDashboard
+- Link for the application. https://phakpa.github.io/weatherDashboard/
+- Link for the Github repository. https://github.com/phakpa/weatherDashboard
 
-images below ------------------------------------------------------------------------------
+# Images
+
 ![](images/weatherDash1.PNG)
 ![](images/weatherDash2.PNG)
 ![](images/weatherDash3.PNG)
